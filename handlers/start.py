@@ -1,20 +1,20 @@
 from aiogram import types, Bot
 from keyboards.inline import start_keyboard
 
-from data.db import DBCommands, create_db
+#from data.db import DBCommands, create_db
 
 
-db = DBCommands()
+#db = DBCommands()
 
 
 # start
 
 async def start(message: types.Message):
     with open('tomas.jpeg', 'rb') as photo:
-        await create_db()
+#        await create_db()
 
         chat_id = message.from_user.id
-        await db.add_new_user()
+#        await db.add_new_user()
 
         await message.bot.send_photo(chat_id=chat_id, photo=photo,
                                      caption=f"Hey, {message.from_user.full_name}! Welcome to Crypto Tom!\n"

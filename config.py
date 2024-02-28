@@ -8,7 +8,7 @@ class DbConfig:
     host: str
     password: str
     user: str
-    database: str
+#    database: str
 
 
 @dataclass
@@ -26,7 +26,7 @@ class Miscellaneous:
 @dataclass
 class Config:
     tg_bot: TgBot
-    db: DbConfig
+#    db: DbConfig
     misc: Miscellaneous
 
 
@@ -40,12 +40,12 @@ def load_config(path: str = None):
             admin_ids=list(map(int, env.list("ADMINS"))),
             use_redis=env.bool("USE_REDIS"),
         ),
-        db=DbConfig(
-            host=env.str('DB_HOST'),
-            password=env.str('DB_PASS'),
-            user=env.str('DB_USER'),
-            database=env.str('DB_DATABASE')
-        ),
+        # db=DbConfig(
+        #     host=env.str('DB_HOST'),
+        #     password=env.str('DB_PASS'),
+        #     user=env.str('DB_USER'),
+        #     database=env.str('DB_DATABASE')
+        # ),
         misc=Miscellaneous()
     )
 
@@ -53,5 +53,5 @@ def load_config(path: str = None):
 config = load_config()
 
 
-POSTGRES_URL = f"postgres://{config.db.user}:{config.db.password}@{config.db.host}/{config.db.database}"
+#POSTGRES_URL = f"postgres://{config.db.user}:{config.db.password}@{config.db.host}/{config.db.database}"
 
