@@ -6,8 +6,8 @@ from keyboards.inline import community_keyboard
 
 async def cmd_community(call: types.CallbackQuery):
     with open('tomas.jpeg', 'rb') as photo:
-        await call.message.answer_photo(photo, "This is help message\n "
-                                               "You'll need to add your content here",
+        await call.message.answer_photo(photo, "Join our socials so "
+                                               "you do not miss any important news or updates.",
                                         reply_markup=community_keyboard())
 
         await call.message.delete()
