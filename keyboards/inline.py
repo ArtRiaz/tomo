@@ -1,14 +1,30 @@
-from aiogram.types import WebAppInfo, InlineKeyboardMarkup, InlineKeyboardButton
+from aiogram.types import WebAppInfo, InlineKeyboardMarkup, InlineKeyboardButton, ReplyKeyboardMarkup, KeyboardButton
 
 
 # Keyboards
+
+# New user
 def start_keyboard():
     ikb = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="Play now!",
-                              web_app=WebAppInfo(url="https://nvadim11.github.io/CryptoTom/dist/index.html"))], [
-            InlineKeyboardButton(text="Join community", callback_data="community")
+        [InlineKeyboardButton(text="🎮 Play now!",
+                              callback_data="play")], [
+            InlineKeyboardButton(text="👥 Join community", callback_data="community")
         ],
-        [InlineKeyboardButton(text="Help", callback_data="help")]
+        [InlineKeyboardButton(text="🆘 Help", callback_data="help")]
+    ]
+    )
+    return ikb
+
+
+# Old user
+
+def start_keyboard_user():
+    ikb = InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="🎮 Play now!",
+                              web_app=WebAppInfo(url="https://www.prodtest1.space/"))], [
+            InlineKeyboardButton(text="👥 Join community", callback_data="community")
+        ],
+        [InlineKeyboardButton(text="🆘 Help", callback_data="help")]
     ]
     )
     return ikb
@@ -17,9 +33,7 @@ def start_keyboard():
 def community_keyboard():
     ikb = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="Telegram", url="https://t.me/Crypto_Cat_Tom")],
-        [InlineKeyboardButton(text="Discord", url="https://discord.gg/3vzD2K7q")],
-        [InlineKeyboardButton(text="Instagram", url="https://www.instagram.com")],
-        [InlineKeyboardButton(text="Back", callback_data="back")]
+        [InlineKeyboardButton(text="Twitter", url="https://twitter.com/TimCatSol")]
     ]
     )
     return ikb
@@ -33,9 +47,14 @@ def back_keyboard():
     return ikb
 
 
-def play_keyboard():
+
+
+def play_game():
     ikb = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="Play now!", callback_data="play")]
+        [InlineKeyboardButton(text="🎮 Play now!", web_app=WebAppInfo(url="https://www.prodtest1.space/"))],
     ]
     )
     return ikb
+
+
+

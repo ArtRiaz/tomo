@@ -6,12 +6,11 @@ import logging
 from config import load_config
 
 # aiogram
-from aiogram import Bot, Dispatcher
+from aiogram import Bot, Dispatcher, types
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 
 # middlewares
 from middlewares.anti_time import Anti_time
-
 
 # handlers
 from handlers.start import register_start
@@ -51,7 +50,6 @@ async def main():
     dp = Dispatcher(bot, storage=storage)
     bot['config'] = config  # доставать config из переменной bot, если в handler я хочу достать что то из Config
     # я делаю => bot.get("config")
-
 
     register_all_middleware(dp)
     # register_all_fillters(dp)
