@@ -6,7 +6,7 @@ services:
     image: postgres:14
     environment:
      - POSTGRES_USER=$DB_USER
-     - POSTGRES_PASSWORD=$DB_PASSWORD
+     - POSTGRES_PASSWORD=$DB_PASS
      - POSTGRES_DB=$DB_DATABASE
     restart: always
     ports:

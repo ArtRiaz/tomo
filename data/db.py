@@ -18,7 +18,6 @@ class User(db.Model):
     __tablename__ = 'users'
     id = Column(Integer(), primary_key=True)
     user_id = Column(BigInteger())
-    wallet_address = Column(String(50))
     refferal = Column(Integer())
 
     query: sql.Select

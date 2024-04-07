@@ -8,9 +8,9 @@ async def set_commands(bot: Bot):
     commands = [
         BotCommand(command='start', description='🏁 Start the bot'),
         BotCommand(command='profile', description='👤 Profile'),
-        BotCommand(command='help', description='🆘 Show help'),
+        BotCommand(command='rules', description='📋 Rules of the game'),
         BotCommand(command='referral', description='👥 Invite a friend'),
-        BotCommand(command='contact', description='📞 Contact us'),
+        BotCommand(command='social', description='📲 Social'),
         # BotCommand(command='leaderboard', description='Leaderboard'),
     ]
     await bot.set_my_commands(commands, BotCommandScopeDefault())

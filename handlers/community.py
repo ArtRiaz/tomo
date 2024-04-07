@@ -6,8 +6,7 @@ from keyboards.inline import community_keyboard
 
 async def cmd_community(call: types.CallbackQuery):
     with open('static/Contacts.png', 'rb') as photo:
-        await call.message.answer_photo(photo, "<b>Join our socials so "
-                                               "you do not miss any important news or updates.</b>",
+        await call.message.answer_photo(photo, "<b>Stay tuned for news, secrets, and bonuses.</b>",
                                         reply_markup=community_keyboard())
 
         await call.message.delete()
@@ -17,8 +16,7 @@ async def cmd_community(call: types.CallbackQuery):
 
 async def cmd_contact(message: types.Message):
     with open('static/Contacts.png', 'rb') as photo:
-        await message.answer_photo(photo, "<b>Join our socials so "
-                                          "you do not miss any important news or updates.</b>",
+        await message.answer_photo(photo, "<b>Stay tuned for news, secrets, and bonuses.</b>",
                                    reply_markup=community_keyboard())
 
         await message.delete()
@@ -26,4 +24,4 @@ async def cmd_contact(message: types.Message):
 
 def register_community(dp: Dispatcher):
     dp.register_callback_query_handler(cmd_community, text="community")
-    dp.register_message_handler(cmd_contact, commands="contact")
+    dp.register_message_handler(cmd_contact, commands="social")

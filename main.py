@@ -15,10 +15,8 @@ from middlewares.anti_time import Anti_time
 # handlers
 from handlers.start import register_start
 from handlers.help import register_help
-from handlers.rules import register_rules
 from misc.default_commands import set_commands
 from handlers.community import register_community
-from handlers.back import register_handler_back
 from handlers.profile import register_profile
 
 logger = logging.getLogger(__name__)
@@ -31,9 +29,7 @@ def register_all_middleware(dp):
 def register_all_handlers(dp):
     register_start(dp)
     register_help(dp)
-    register_rules(dp)
     register_community(dp)
-    register_handler_back(dp)
     register_profile(dp)
 
 
