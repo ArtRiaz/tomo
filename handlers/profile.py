@@ -1,5 +1,4 @@
 from aiogram import types, Bot, Dispatcher
-import requests
 from data.db import User
 from aiogram.utils.markdown import hlink, hbold, hcode
 from config import load_config
@@ -8,44 +7,50 @@ import aiohttp
 """User Interface results of the leaderboard and profile results."""
 
 
+# Рассмотрите возможность инициализации сессии вне этих функций, если она используется многократно
+session = None
+
+
+async def get_session():
+    global session
+    if session is None or session.closed:
+        session = aiohttp.ClientSession()
+    return session
+
+
 async def get_profile(url, headers):
-    async with aiohttp.ClientSession() as session:
-        async with session.get(url) as response:
+    session = await get_session()
+    async with session.get(url, headers=headers) as response:
+        if response.status == 404:
+            return None
+        return await response.json()
 
-            return await response.json()
-
-
-# Profile
 
 async def cmd_profile(message: types.Message):
     conf = load_config()
     chat_id = message.from_user.id
-    # Open a session and get data from the server.
-    with open('static/profile.png', 'rb') as photo:
-        try:
-            headers = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, "
-                                     "like Gecko)"
-                                     " Version/16.5.2 Safari/605.1.15"}
+    try:
+        headers = {
+            "User-Agent": "Mozilla/5.0"
+        }
 
-            results = await get_profile(f"https://admin.{conf.misc.domain}/api/telegram-id/{chat_id}",
-                                        headers=headers)
+        results = await get_profile(f"https://admin.{conf.misc.domain}/api/telegram-id/{chat_id}", headers=headers)
 
-            if results == 404:
-                await message.answer(f"👤 <b>Profile: Not found\n"
-                                     f"Register your profile.</b>")
-            else:
-                balance = results["wallet_balance"]
-                if balance is None:
-                    balance = 0
-                await message.answer_photo(photo, f"👤 Pofile: {message.from_user.username}\n"
-                                                  "\n"
-                                                  f"🏆 Total balance: {balance}\n"
-                                          )
-        except requests.exceptions.RequestException as e:
-            print(e)
-            await message.answer("Opps... what went wrong\n"
-                                 "Your profile is not available at the moment.\n"
-                                 " Please try again, click 👉 /start")
+        if results is None:
+            await message.answer(f"👤 <b>Profile: Not found\nRegister your profile.</b>")
+            return
+
+        balance = results.get("wallet_balance", 0) or 0
+        await message.answer_photo(open('static/profile.png', 'rb'),
+                                   caption=f"👤 Profile: {message.from_user.username}\n\n🏆 Total balance: {balance}")
+
+    except aiohttp.ClientError as e:
+        print(e)
+        await message.answer("Oops... something went wrong\nYour profile is not available at the moment.\n"
+                             "Please try again ...")
+
+
+# Не забудьте закрыть сессию при завершении работы
 
 
 # leaderboards

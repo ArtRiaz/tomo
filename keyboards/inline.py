@@ -19,8 +19,8 @@ def start_keyboard():
 
 def start_keyboard_user():
     ikb = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="🎮 Play",
-                              web_app=WebAppInfo(url="https://5db0-212-178-0-123.ngrok-free.app/"))], [
+        [InlineKeyboardButton(text="🎮 Play now",
+                              web_app=WebAppInfo(url="https://nvadim11.github.io/TommyTg/"))], [
             InlineKeyboardButton(text="👯 Community", callback_data="community")
         ],
         [InlineKeyboardButton(text="📋 Rules", callback_data="rules")]
@@ -31,7 +31,7 @@ def start_keyboard_user():
 
 def community_keyboard():
     ikb = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="Telegram", url="https://t.me/tomo_cat")],
+        [InlineKeyboardButton(text="Telegram", url="https://t.me/tomocat_sol")],
         [InlineKeyboardButton(text="Twitter", url="https://twitter.com/TimCatSol")]
     ]
     )
@@ -40,7 +40,7 @@ def community_keyboard():
 
 def play_game():
     ikb = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="🎮 Play", web_app=WebAppInfo(url="https://5db0-212-178-0-123.ngrok-free.app/"))],
+        [InlineKeyboardButton(text="🎮 Play now", web_app=WebAppInfo(url="https://nvadim11.github.io/TommyTg/"))],
     ]
     )
     return ikb
@@ -48,8 +48,8 @@ def play_game():
 
 def start_game():
     ikb = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="🎮 A newbie", web_app=WebAppInfo(url="https://5db0-212-178-0-123.ngrok-free.app/"))],
-        [InlineKeyboardButton(text="📲 A player", callback_data="register")],
+        [InlineKeyboardButton(text="🎮 Play now", web_app=WebAppInfo(url="https://nvadim11.github.io/TommyTg/"))],
+        [InlineKeyboardButton(text="📲 Log in with a wallet", callback_data="register")],
     ]
     )
     return ikb
@@ -57,7 +57,7 @@ def start_game():
 
 def play_game_new_ref():
     ikb = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="🎮 Play", web_app=WebAppInfo(url="https://5db0-212-178-0-123.ngrok-free.app/"))],
+        [InlineKeyboardButton(text="🎮 Play", web_app=WebAppInfo(url="https://nvadim11.github.io/TommyTg/"))],
         [InlineKeyboardButton(text="📋 Rules", callback_data="rules")]
     ]
     )

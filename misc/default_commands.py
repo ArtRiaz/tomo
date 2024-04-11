@@ -6,7 +6,6 @@ from aiogram.types import BotCommand, BotCommandScopeDefault, WebAppInfo
 
 async def set_commands(bot: Bot):
     commands = [
-        BotCommand(command='start', description='🏁 Start the bot'),
         BotCommand(command='profile', description='👤 Profile'),
         BotCommand(command='rules', description='📋 Rules of the game'),
         BotCommand(command='referral', description='👥 Invite a friend'),
